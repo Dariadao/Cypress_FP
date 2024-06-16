@@ -1,0 +1,27 @@
+{
+  "name": "cypress-fp",
+  "version": "1.0.0",
+  "description": "First Cypress Test",
+  "main": "index.js",
+  "scripts": {
+    "cy.open": "npx cypress open",
+    "cy.run": "npx cypress run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dariadao/Cypress_FP.git"
+  },
+  "keywords": [
+    "cypress"
+  ],
+  "author": "Zakharova D",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dariadao/Cypress_FP/issues"
+  },
+  "homepage": "https://github.com/Dariadao/Cypress_FP#readme",
+  "devDependencies": {
+    "cypress": "^13.11.0"
+  }
+}
