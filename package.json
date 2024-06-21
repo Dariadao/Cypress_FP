@@ -4,9 +4,11 @@
   "description": "First Cypress Test",
   "main": "index.js",
   "scripts": {
-    "cy.open": "npx cypress open",
-    "cy.run": "npx cypress run",
-    "cy.dashboard": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45",
+    "cy.open.live": "npx cypress open --config-file cypress-live.config.js",
+    "cy.run.live": "npx cypress run --config-file cypress-live.config.js",
+    "cy.open.staging": "npx cypress open --config-file cypress-staging.config.js",
+    "cy.live.dashboard": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-live.config.js",
+    "cy.staging.dashboard": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-staging.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

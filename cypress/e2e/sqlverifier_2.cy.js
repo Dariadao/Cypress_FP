@@ -1,5 +1,6 @@
 describe("Opened sign-in/registration dropdown menu when link is clicked", () => {
   it("Dropdown menu for signin/registration is open", () => {
+    Cypress.config("baseUrl");
     cy.visit("/");
     cy.get('[data-cy="accountMenu"]').click();
     cy.get(".dropdown-menu.show").should("be.visible");
@@ -7,6 +8,7 @@ describe("Opened sign-in/registration dropdown menu when link is clicked", () =>
 });
 
 const login = Cypress.Commands.add("login", (username, password) => {
+  Cypress.config("baseUrl");
   cy.visit("/login");
   cy.get('[data-cy="username"]').type(username);
   cy.get('[data-cy="password"]').type(password, { log: false });
@@ -16,7 +18,7 @@ const login = Cypress.Commands.add("login", (username, password) => {
 
 describe("Successful login and navigation on home page ", () => {
   beforeEach(() => {
-    cy.login("usertest", "qwerty1");
+    cy.login(Cypress.env("username"), Cypress.env("password"));
   });
 
   it("Should navigate to Task page when link is clicked", () => {
