@@ -7,85 +7,73 @@ describe("Opened sign-in/registration dropdown menu when link is clicked", () =>
   });
 });
 
-const login = Cypress.Commands.add("login", (username, password) => {
-  Cypress.config("baseUrl");
-  cy.visit("/login");
-  cy.get('[data-cy="username"]').type(username);
-  cy.get('[data-cy="password"]').type(password, { log: false });
-  cy.get('[data-cy="submit"]').click();
-  cy.location("pathname").should("eq", "/");
-});
-
 describe("Successful login and navigation on home page ", () => {
   beforeEach(() => {
     cy.login(Cypress.env("username"), Cypress.env("password"));
   });
 
   it("Should navigate to Task page when link is clicked", () => {
-    cy.get('[data-cy="entity"]').click();
-    cy.get(".dropdown-menu.show").should("be.visible");
-    cy.get('a[href="/task"]').click();
-    cy.location("pathname").should("eq", "/task");
+    cy.openHeaderMenuDropdown('[data-cy="entity"]', ".dropdown-menu.show");
+    cy.openDropdownMenuLink('a[href="/task"]', "/task");
   });
 
   it("Should navigate to User tasks page when link is clicked", () => {
-    cy.get('[data-cy="entity"]').click();
-    cy.get(".dropdown-menu.show").should("be.visible");
-    cy.get('a[href="/user-task"]').click();
-    cy.location("pathname").should("eq", "/user-task");
+    cy.openHeaderMenuDropdown('[data-cy="entity"]', ".dropdown-menu.show");
+    cy.openDropdownMenuLink('a[href="/user-task"]', "/user-task");
   });
 
   it("Should navigate to Api page when link is clicked", () => {
-    cy.get('[data-cy="docsMenu"]').click();
-    cy.get(".dropdown-menu.show").should("be.visible");
-    cy.get('a[href="/docs/docs"]').click();
-    cy.location("pathname").should("eq", "/docs/docs");
+    cy.openHeaderMenuDropdown('[data-cy="docsMenu"]', ".dropdown-menu.show");
+    cy.openDropdownMenuLink('a[href="/docs/docs"]', "/docs/docs");
   });
 
   it("Should switch to French", () => {
-    cy.get("ul>li").eq(3).click();
-    cy.get(".dropdown-menu.show").should("be.visible");
-    cy.get('button[value="fr"]').click();
-    // cy.location("pathname").should("eq", "/fr.json");
-    cy.get("ul>li").eq(3).should("contain", "Français");
+    cy.get("ul>li")
+      .eq(3)
+      .then(($menuBtn) => {
+        cy.openHeaderMenuDropdown($menuBtn, ".dropdown-menu.show");
+      });
+    cy.changeLanguage('button[value="fr"]', "Français");
   });
 
   it("Should switch to Russian", () => {
-    cy.get("ul>li").eq(3).click();
-    cy.get(".dropdown-menu.show").should("be.visible");
-    cy.get('button[value="ru"]').click();
-    // cy.location("pathname").should("eq", "/ru.json");
-    cy.get("ul>li").eq(3).should("contain", "Русский");
+    cy.get("ul>li")
+      .eq(3)
+      .then(($menuBtn) => {
+        cy.openHeaderMenuDropdown($menuBtn, ".dropdown-menu.show");
+      });
+    cy.changeLanguage('button[value="ru"]', "Русский");
   });
 
   it("Should switch to Ucranian", () => {
-    cy.get("ul>li").eq(3).click();
-    cy.get(".dropdown-menu.show").should("be.visible");
-    cy.get('button[value="ua"]').click();
-    // cy.location("pathname").should("eq", "/ua.json");
-    cy.get("ul>li").eq(3).should("contain", "Українська");
+    cy.get("ul>li")
+      .eq(3)
+      .then(($menuBtn) => {
+        cy.openHeaderMenuDropdown($menuBtn, ".dropdown-menu.show");
+      });
+    cy.changeLanguage('button[value="ua"]', "Українська");
   });
 
   it("Should switch to English", () => {
-    cy.get("ul>li").eq(3).click();
-    cy.get(".dropdown-menu.show").should("be.visible");
-    cy.get('button[value="en"]').click();
-    // cy.location("pathname").should("eq", "/en.json");
-    cy.get("ul>li").eq(3).should("contain", "English");
+    cy.get("ul>li")
+      .eq(3)
+      .then(($menuBtn) => {
+        cy.openHeaderMenuDropdown($menuBtn, ".dropdown-menu.show");
+      });
+    cy.changeLanguage('button[value="en"]', "English");
   });
 
   it("Should navigate to Settings page when link is clicked", () => {
-    cy.get('[data-cy="accountMenu"]').click();
-    cy.get("div.dropdown-menu.show").should("be.visible");
-    cy.get('[data-cy="settings"]').click();
-    cy.location("pathname").should("eq", "/account/settings");
+    cy.openHeaderMenuDropdown(
+      '[data-cy="accountMenu"]',
+      "div.dropdown-menu.show"
+    );
+    cy.openDropdownMenuLink('[data-cy="settings"]', "/account/settings");
   });
 
   it("Should navigate to Password page when link is clicked", () => {
-    cy.get('[data-cy="accountMenu"]').click();
-    cy.get(".dropdown-menu.show").should("be.visible");
-    cy.get('[data-cy="passwordItem"]').click();
-    cy.location("pathname").should("eq", "/account/password");
+    cy.openHeaderMenuDropdown('[data-cy="accountMenu"]', ".dropdown-menu.show");
+    cy.openDropdownMenuLink('[data-cy="passwordItem"]', "/account/password");
   });
 
   it("Should navigate to Home page when link is clicked", () => {
@@ -94,9 +82,7 @@ describe("Successful login and navigation on home page ", () => {
   });
 
   it("Succesful logout", () => {
-    cy.get('[data-cy="accountMenu"]').click();
-    cy.get(".dropdown-menu.show").should("be.visible");
-    cy.get('[data-cy="logout"]').click();
-    cy.location("pathname").should("eq", "/logout");
+    cy.openHeaderMenuDropdown('[data-cy="accountMenu"]', ".dropdown-menu.show");
+    cy.openDropdownMenuLink('[data-cy="logout"]', "/logout");
   });
 });

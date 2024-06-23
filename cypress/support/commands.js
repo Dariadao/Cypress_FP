@@ -23,3 +23,27 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("login", (username, password) => {
+  Cypress.config("baseUrl");
+  cy.visit("/login");
+  cy.get('[data-cy="username"]').type(username);
+  cy.get('[data-cy="password"]').type(password, { log: false });
+  cy.get('[data-cy="submit"]').click();
+  cy.location("pathname").should("eq", "/");
+});
+
+Cypress.Commands.add("openHeaderMenuDropdown", (menuBtn, dropdownMenu) => {
+  cy.get(menuBtn).click();
+  cy.get(dropdownMenu).should("be.visible");
+});
+
+Cypress.Commands.add("openDropdownMenuLink", (dropdownMenuItem, urlPath) => {
+  cy.get(dropdownMenuItem).click();
+  cy.location("pathname").should("eq", urlPath);
+});
+
+Cypress.Commands.add("changeLanguage", (targetLanguageBtn, expectedText) => {
+  cy.get(targetLanguageBtn).click();
+  cy.get("ul>li").eq(3).should("contain", expectedText);
+});
