@@ -1,0 +1,38 @@
+[
+  {
+    "username": "",
+    "email": "mailmail23@ts.ru",
+    "password": "qwerty0",
+    "confirmPassword": "qwerty0"
+  },
+  {
+    "username": "user55555",
+    "email": "user.td",
+    "password": "qwerty12",
+    "confirmPassword": "qwerty12"
+  },
+  {
+    "username": "nnn53",
+    "email": "",
+    "password": "qwertyu",
+    "confirmPassword": "qwertyu"
+  },
+  {
+    "username": "mmm91",
+    "email": "qwerty@qw.qw",
+    "password": "",
+    "confirmPassword": ""
+  },
+  {
+    "username": "vvv",
+    "email": "vvv@qw.qwer",
+    "password": "asdfgh876",
+    "confirmPassword": ""
+  },
+  {
+    "username": "trewq",
+    "email": "ccc@example.com",
+    "password": "LoremipsumdolorsitametconsectetueradipiscingelitAeneancommodoligulaegetdolorAeneanmassaCumsociisnatoquepenatibusemagnisdisp",
+    "confirmPassword": "LoremipsumdolorsitametconsectetueradipiscingelitAeneancommodoligulaegetdolorAeneanmassaCumsociisnatoquepenatibusemagnisdisp"
+  }
+]

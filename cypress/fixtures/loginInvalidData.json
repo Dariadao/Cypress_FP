@@ -1,0 +1,9 @@
+[
+  { "usernameInv": "admin_automation", "passwordInv": "123asd" },
+  { "usernameInv": "user_teacher", "passwordInv": "zxcvb098" },
+  { "usernameInv": "user_student", "passwordInv": "5678456" },
+  { "usernameInv": "usertest", "passwordInv": "" },
+  { "usernameInv": "", "passwordInv": "qwerty1" },
+  { "usernameInv": "", "passwordInv": "" },
+  { "usernameInv": "asdffdsa", "passwordInv": "asdffdsa" }
+]

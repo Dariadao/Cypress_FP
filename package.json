@@ -9,8 +9,8 @@
     "cy.open.staging": "npx cypress open --config-file cypress-staging.config.js",
     "cy.live.dashboard": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-live.config.js",
     "cy.staging.dashboard": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-staging.config.js",
-    "cy.run.live.spec1.electron": "npx cypress run --browser electron --spec 'cypress/e2e/sqlverifier.cy.js' --config-file cypress-live.config.js",
-    "cy.run.live.spec2.chrome": "npx cypress run -b chrome -s 'cypress/e2e/sqlverifier_2.cy.js' --config-file cypress-live.config.js",
+    "cy.run.live.spec1.electron": "npx cypress run --browser electron --spec 'cypress/e2e/verifier_load_test.cy.js' --config-file cypress-live.config.js",
+    "cy.run.live.spec2.chrome": "npx cypress run -b chrome -s 'cypress/e2e/verifier_header_menu_test.cy.js' --config-file cypress-live.config.js",
     "cy.run.live.electronANDchrome": "npm run cy.run.live.spec1.electron && npm run cy.run.live.spec2.chrome",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

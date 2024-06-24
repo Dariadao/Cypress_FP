@@ -33,6 +33,25 @@ Cypress.Commands.add("login", (username, password) => {
   cy.location("pathname").should("eq", "/");
 });
 
+Cypress.Commands.add("loginFail", (username, password) => {
+  Cypress.config("baseUrl");
+  cy.visit("/login");
+  if (username === "") {
+    cy.get('[data-cy="username"]').clear();
+  } else {
+    cy.get('[data-cy="username"]').type(username);
+  }
+
+  if (password === "") {
+    cy.get('[data-cy="password"]').clear();
+  } else {
+    cy.get('[data-cy="password"]').type(password, { log: false });
+  }
+
+  cy.get('[data-cy="submit"]').click();
+  cy.location("pathname").should("eq", "/login");
+});
+
 Cypress.Commands.add("openHeaderMenuDropdown", (menuBtn, dropdownMenu) => {
   cy.get(menuBtn).click();
   cy.get(dropdownMenu).should("be.visible");
@@ -47,3 +66,32 @@ Cypress.Commands.add("changeLanguage", (targetLanguageBtn, expectedText) => {
   cy.get(targetLanguageBtn).click();
   cy.get("ul>li").eq(3).should("contain", expectedText);
 });
+
+Cypress.Commands.add("checkUrlPathName", (expectedUrlPath) => {
+  cy.location("pathname").should("eq", expectedUrlPath);
+});
+
+Cypress.Commands.add(
+  "registration",
+  (username, email, password, confirmPassword) => {
+    cy.visit("/account/register");
+
+    if (username !== "") {
+      cy.get('[data-cy="username"]').type(username);
+    }
+
+    if (email !== "") {
+      cy.get('[data-cy="email"]').type(email);
+    }
+
+    if (password !== "") {
+      cy.get('[data-cy="firstPassword"]').type(password);
+    }
+
+    if (confirmPassword !== "") {
+      cy.get('[data-cy="secondPassword"]').type(confirmPassword);
+    }
+
+    cy.get('[data-cy="submit"]').click();
+  }
+);
