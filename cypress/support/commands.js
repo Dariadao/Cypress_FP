@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("login", (username, password) => {
+Cypress.Commands.add("login", ({ username, password }) => {
   Cypress.config("baseUrl");
   cy.visit("/login");
   cy.get('[data-cy="username"]').type(username);
@@ -33,7 +33,7 @@ Cypress.Commands.add("login", (username, password) => {
   cy.location("pathname").should("eq", "/");
 });
 
-Cypress.Commands.add("loginFail", (username, password) => {
+Cypress.Commands.add("loginFail", ({ username, password }) => {
   Cypress.config("baseUrl");
   cy.visit("/login");
   if (username === "") {
@@ -73,7 +73,7 @@ Cypress.Commands.add("checkUrlPathName", (expectedUrlPath) => {
 
 Cypress.Commands.add(
   "registration",
-  (username, email, password, confirmPassword) => {
+  ({ username, email, password, confirmPassword }) => {
     cy.visit("/account/register");
 
     if (username !== "") {
@@ -95,3 +95,8 @@ Cypress.Commands.add(
     cy.get('[data-cy="submit"]').click();
   }
 );
+
+Cypress.Commands.add("logout", () => {
+  cy.contains("Account").click();
+  cy.contains("Sign out").click();
+});

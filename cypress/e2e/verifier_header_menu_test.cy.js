@@ -2,14 +2,16 @@ describe("Opened sign-in/registration dropdown menu when link is clicked", () =>
   it("Dropdown menu for signin/registration is open", () => {
     Cypress.config("baseUrl");
     cy.visit("/");
-    cy.get('[data-cy="accountMenu"]').click();
-    cy.get(".dropdown-menu.show").should("be.visible");
+    cy.openHeaderMenuDropdown('[data-cy="accountMenu"]', ".dropdown-menu.show");
   });
 });
 
 describe("Successful login and navigation on home page ", () => {
   beforeEach(() => {
-    cy.login(Cypress.env("username"), Cypress.env("password"));
+    cy.login({
+      username: Cypress.env("username"),
+      password: Cypress.env("password"),
+    });
   });
 
   it("Should navigate to Task page when link is clicked", () => {
