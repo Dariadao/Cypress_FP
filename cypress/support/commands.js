@@ -61,7 +61,7 @@ Cypress.Commands.add("openHeaderMenuDropdown", (menuBtn, dropdownMenu) => {
 });
 
 Cypress.Commands.add("openDropdownMenuLink", (dropdownMenuItem, urlPath) => {
-  cy.get(dropdownMenuItem).click();
+  cy.get(dropdownMenuItem).click({ force: true });
   cy.location("pathname").should("eq", urlPath);
 });
 
