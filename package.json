@@ -7,12 +7,14 @@
     "cy.open.live": "npx cypress open --config-file cypress-live.config.js",
     "cy.run.live": "npx cypress run --config-file cypress-live.config.js",
     "cy.open.staging": "npx cypress open --config-file cypress-staging.config.js",
+    "cy.run.staging": "npx cypress run --config-file cypress-staging.config.js",
     "cy.live.dashboard": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-live.config.js",
     "cy.staging.dashboard": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-staging.config.js",
-    "cy.run.live.spec1.electron": "npx cypress run --browser electron --spec 'cypress/e2e/verifier_load_test.cy.js' --config-file cypress-live.config.js",
-    "cy.run.live.spec2.chrome": "npx cypress run -b chrome -s 'cypress/e2e/verifier_header_menu_test.cy.js' --config-file cypress-live.config.js",
     "cy.run.live.electronANDchrome": "npm run cy.run.live.spec1.electron && npm run cy.run.live.spec2.chrome",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy.run.cloud.live.spec1.13.chrome": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-live-13inch.config.js -b chrome -s 'cypress/e2e/pageObjectTests'",
+    "cy.run.cloud.live.spec2.24.electron": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-live-24inch.config.js -b electron -s 'cypress/e2e/verifierTests'",
+    "cy.parallel": "npm run cy.run.cloud.live.spec1.13.chrome -- --group Chrome --ci-build-id 4 --parallel & npm run cy.run.cloud.live.spec2.24.electron -- --group electron --ci-build-id 4 --parallel"
   },
   "repository": {
     "type": "git",

@@ -8,10 +8,7 @@ describe("Opened sign-in/registration dropdown menu when link is clicked", () =>
 
 describe("Successful login and navigation on home page ", () => {
   beforeEach(() => {
-    cy.login({
-      username: Cypress.env("username"),
-      password: Cypress.env("password"),
-    });
+    cy.login(Cypress.env("username"), Cypress.env("password"));
   });
 
   it("Should navigate to Task page when link is clicked", () => {

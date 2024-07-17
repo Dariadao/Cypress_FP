@@ -1,36 +1,41 @@
-const loginPage = require("../fixtures/pages/loginPageElements.json");
-const changePassword = require("../fixtures/pages/changePasswordElements.json");
+import { LoginPage } from "../../pages/loginPage";
+import { ChangePasswordPage } from "../../pages/changePasswordPage";
 
 import { faker } from "@faker-js/faker";
 
+beforeEach(() => {
+  cy.visit("/account/login");
+});
+
 describe.only("Verifier - Login UI", () => {
   it.only("user cannot login with old password", () => {
+    let loginPage = new LoginPage();
+    let changePasswordPage = new ChangePasswordPage();
     let username = Cypress.env("username");
     let oldPassword = Cypress.env("password");
     let newPassword = faker.internet.password();
 
-    cy.visit("/account/login");
-    cy.login(username, oldPassword);
+    loginPage.login(username, oldPassword);
     cy.contains("Swagger").should("be.visible");
     cy.logout();
 
     cy.visit("/account/login");
-    cy.changePassword(username, oldPassword, newPassword);
+    changePasswordPage.changePassword(username, oldPassword, newPassword);
     cy.logout();
 
     cy.visit("/account/login");
-    cy.login(username, newPassword);
+    loginPage.login(username, newPassword);
     cy.contains("Swagger").should("be.visible");
     cy.logout();
 
     cy.visit("/account/login");
-    cy.login(username, oldPassword);
+    loginPage.login(username, oldPassword);
     cy.contains(
       "Failed to sign in! Please check your credentials and try again."
     ).should("be.visible");
 
     cy.visit("/account/login");
-    cy.changePassword(username, newPassword, oldPassword);
+    changePasswordPage.changePassword(username, newPassword, oldPassword);
     cy.logout();
   });
 });

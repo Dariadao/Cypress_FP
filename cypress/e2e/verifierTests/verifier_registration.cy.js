@@ -1,5 +1,5 @@
-const validTextData = require("../fixtures/registerData.json");
-const invalidTextData = require("../fixtures/registerInvalidData.json");
+const validTextData = require("../../fixtures/registerData.json");
+const invalidTextData = require("../../fixtures/registerInvalidData.json");
 
 describe("Registration", () => {
   it("Successful registration with valid data", () => {
