@@ -12,6 +12,15 @@
     "cy.run.live.spec1.electron": "npx cypress run --browser electron --spec 'cypress/e2e/verifier_load_test.cy.js' --config-file cypress-live.config.js",
     "cy.run.live.spec2.chrome": "npx cypress run -b chrome -s 'cypress/e2e/verifier_header_menu_test.cy.js' --config-file cypress-live.config.js",
     "cy.run.live.electronANDchrome": "npm run cy.run.live.spec1.electron && npm run cy.run.live.spec2.chrome",
+    "cy.run.cloud.live.spec1": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-live.config.js -s 'cypress/e2e/1_api_tests'",
+    "cy.run.cloud.live.spec2": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-live.config.js -s 'cypress/e2e/2-autorization_tests'",
+    "cy.run.cloud.live.spec3": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-live.config.js -s 'cypress/e2e/3_header_menu_tests'",
+    "cy.run.cloud.live.spec4": "npx cypress run --record --key bc5fef5f-963f-4798-8a92-0401e3154f45 --config-file cypress-live.config.js -s 'cypress/e2e/4_load_tests'",
+    "cy:parallel:spec1": "npm run cy.run.cloud.live.spec1 -- --group spec1 --parallel --ci-build-id=$BUILD_ID",
+    "cy:parallel:spec2": "npm run cy.run.cloud.live.spec2 -- --group spec2 --parallel --ci-build-id=$BUILD_ID",
+    "cy:parallel:spec3": "npm run cy.run.cloud.live.spec3 -- --group spec3 --parallel --ci-build-id=$BUILD_ID",
+    "cy:parallel:spec4": "npm run cy.run.cloud.live.spec4 -- --group spec4 --parallel --ci-build-id=$BUILD_ID",
+    "cy:parallel": "concurrently \"npm run cy:parallel:spec1\" \"npm run cy:parallel:spec2\" \"npm run cy:parallel:spec3\" \"npm run cy:parallel:spec4\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,6 +38,7 @@
   "homepage": "https://github.com/Dariadao/Cypress_FP#readme",
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
+    "concurrently": "^8.2.2",
     "cypress": "^13.11.0"
   }
 }

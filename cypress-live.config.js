@@ -9,10 +9,10 @@ module.exports = defineConfig({
     },
     baseUrl: "https://sqlverifier-live-6e21ca0ed768.herokuapp.com",
     env: {
-      username: "usertest222",
-      password: "qwerty222",
-      usernameAdmin:"username333",
-      pwdAdmin: "qwerty333"
+      username: "user123",
+      password: "qwerty123",
+      usernameAdmin: "username333",
+      pwdAdmin: "qwerty333",
     },
     watchForFileChanges: false,
   },
